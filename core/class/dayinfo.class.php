@@ -90,7 +90,11 @@ class dayinfo extends eqLogic {
     public function isNotWorkable(){
         if ($this->getConfiguration('geoloc') == "jeedom") {
             $postal = config::byKey('info::postalCode');
-            $region = $postal[0] . $postal[1];
+            if (§POSTAL < '96000') {
+              $region = $postal[0] . $postal[1];
+            } else {
+              $region = $postal[0] . $postal[1] . $postal[2];
+            }  
             $stateCode = strtolower(config::byKey('info::stateCode'));
             if ($stateCode == 'fr') {
                 $country = "france";
@@ -161,6 +165,8 @@ class dayinfo extends eqLogic {
                 $holidays[] = mktime(0, 0, 0, 6, 10, $year);  // Abolition esclavage
             } else if ($region == "974") {
                 $holidays[] = mktime(0, 0, 0, 12, 20, $year);  // Abolition esclavage
+            } else if ($region == "976") {
+                $holidays[] = mktime(0, 0, 0, 4, 27, $year);  // Abolition esclavage Mayotte
             }
         }
         else if ($country == "belgique")
