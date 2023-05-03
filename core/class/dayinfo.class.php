@@ -90,7 +90,7 @@ class dayinfo extends eqLogic {
     public function isNotWorkable(){
         if ($this->getConfiguration('geoloc') == "jeedom") {
             $postal = config::byKey('info::postalCode');
-            if (§POSTAL < '96000') {
+            if (§postal < '96000') {
               $region = $postal[0] . $postal[1];
             } else {
               $region = $postal[0] . $postal[1] . $postal[2];
